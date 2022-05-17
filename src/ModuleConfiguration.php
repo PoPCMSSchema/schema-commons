@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace PoPCMSSchema\SchemaCommons;
 
-use PoP\Root\Component\AbstractComponentConfiguration;
-use PoP\Root\Component\EnvironmentValueHelpers;
+use PoP\Root\Module\AbstractModuleConfiguration;
+use PoP\Root\Module\EnvironmentValueHelpers;
 
-class ComponentConfiguration extends AbstractComponentConfiguration
+class ModuleConfiguration extends AbstractModuleConfiguration
 {
     /**
      * Remove unwanted data added to the REQUEST_URI, replacing
