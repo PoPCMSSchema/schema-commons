@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PoPCMSSchema\SchemaCommons\TypeResolvers\InputObjectType;
 
+use PoP\ComponentModel\TypeResolvers\InputTypeResolverInterface;
 use PoP\ComponentModel\Feedback\ObjectTypeFieldResolutionFeedback;
 use PoP\ComponentModel\Feedback\ObjectTypeFieldResolutionFeedbackStore;
 use PoP\ComponentModel\FilterInputs\FilterInputInterface;
@@ -27,6 +28,7 @@ class PaginationInputObjectTypeResolver extends AbstractQueryableInputObjectType
     }
     final protected function getIntScalarTypeResolver(): IntScalarTypeResolver
     {
+        /** @var IntScalarTypeResolver */
         return $this->intScalarTypeResolver ??= $this->instanceManager->getInstance(IntScalarTypeResolver::class);
     }
     final public function setOffsetFilterInput(OffsetFilterInput $excludeIDsFilterInput): void
@@ -35,6 +37,7 @@ class PaginationInputObjectTypeResolver extends AbstractQueryableInputObjectType
     }
     final protected function getOffsetFilterInput(): OffsetFilterInput
     {
+        /** @var OffsetFilterInput */
         return $this->excludeIDsFilterInput ??= $this->instanceManager->getInstance(OffsetFilterInput::class);
     }
     final public function setLimitFilterInput(LimitFilterInput $includeFilterInput): void
@@ -43,6 +46,7 @@ class PaginationInputObjectTypeResolver extends AbstractQueryableInputObjectType
     }
     final protected function getLimitFilterInput(): LimitFilterInput
     {
+        /** @var LimitFilterInput */
         return $this->includeFilterInput ??= $this->instanceManager->getInstance(LimitFilterInput::class);
     }
 
@@ -51,6 +55,9 @@ class PaginationInputObjectTypeResolver extends AbstractQueryableInputObjectType
         return 'PaginationInput';
     }
 
+    /**
+     * @return array<string, InputTypeResolverInterface>
+     */
     public function getInputFieldNameTypeResolvers(): array
     {
         return [

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PoPCMSSchema\SchemaCommons\TypeResolvers\InputObjectType;
 
+use PoP\ComponentModel\TypeResolvers\InputTypeResolverInterface;
 use PoP\ComponentModel\FilterInputs\FilterInputInterface;
 use PoP\ComponentModel\Schema\SchemaTypeModifiers;
 use PoP\ComponentModel\TypeResolvers\InputObjectType\AbstractQueryableInputObjectTypeResolver;
@@ -23,6 +24,7 @@ abstract class AbstractObjectsFilterInputObjectTypeResolver extends AbstractQuer
     }
     final protected function getIDScalarTypeResolver(): IDScalarTypeResolver
     {
+        /** @var IDScalarTypeResolver */
         return $this->idScalarTypeResolver ??= $this->instanceManager->getInstance(IDScalarTypeResolver::class);
     }
     final public function setExcludeIDsFilterInput(ExcludeIDsFilterInput $excludeIDsFilterInput): void
@@ -31,6 +33,7 @@ abstract class AbstractObjectsFilterInputObjectTypeResolver extends AbstractQuer
     }
     final protected function getExcludeIDsFilterInput(): ExcludeIDsFilterInput
     {
+        /** @var ExcludeIDsFilterInput */
         return $this->excludeIDsFilterInput ??= $this->instanceManager->getInstance(ExcludeIDsFilterInput::class);
     }
     final public function setIncludeFilterInput(IncludeFilterInput $includeFilterInput): void
@@ -39,9 +42,13 @@ abstract class AbstractObjectsFilterInputObjectTypeResolver extends AbstractQuer
     }
     final protected function getIncludeFilterInput(): IncludeFilterInput
     {
+        /** @var IncludeFilterInput */
         return $this->includeFilterInput ??= $this->instanceManager->getInstance(IncludeFilterInput::class);
     }
 
+    /**
+     * @return array<string, InputTypeResolverInterface>
+     */
     public function getInputFieldNameTypeResolvers(): array
     {
         return [

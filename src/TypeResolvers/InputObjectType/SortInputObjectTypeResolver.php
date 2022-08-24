@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PoPCMSSchema\SchemaCommons\TypeResolvers\InputObjectType;
 
+use PoP\ComponentModel\TypeResolvers\InputTypeResolverInterface;
 use PoP\ComponentModel\FilterInputs\FilterInputInterface;
 use PoP\ComponentModel\TypeResolvers\InputObjectType\AbstractQueryableInputObjectTypeResolver;
 use PoP\ComponentModel\TypeResolvers\ScalarType\StringScalarTypeResolver;
@@ -25,6 +26,7 @@ class SortInputObjectTypeResolver extends AbstractQueryableInputObjectTypeResolv
     }
     final protected function getStringScalarTypeResolver(): StringScalarTypeResolver
     {
+        /** @var StringScalarTypeResolver */
         return $this->stringScalarTypeResolver ??= $this->instanceManager->getInstance(StringScalarTypeResolver::class);
     }
     final public function setOrderEnumTypeResolver(OrderEnumTypeResolver $orderEnumTypeResolver): void
@@ -33,6 +35,7 @@ class SortInputObjectTypeResolver extends AbstractQueryableInputObjectTypeResolv
     }
     final protected function getOrderEnumTypeResolver(): OrderEnumTypeResolver
     {
+        /** @var OrderEnumTypeResolver */
         return $this->orderEnumTypeResolver ??= $this->instanceManager->getInstance(OrderEnumTypeResolver::class);
     }
     final public function setOrderByFilterInput(OrderByFilterInput $excludeIDsFilterInput): void
@@ -41,6 +44,7 @@ class SortInputObjectTypeResolver extends AbstractQueryableInputObjectTypeResolv
     }
     final protected function getOrderByFilterInput(): OrderByFilterInput
     {
+        /** @var OrderByFilterInput */
         return $this->excludeIDsFilterInput ??= $this->instanceManager->getInstance(OrderByFilterInput::class);
     }
     final public function setOrderFilterInput(OrderFilterInput $includeFilterInput): void
@@ -49,6 +53,7 @@ class SortInputObjectTypeResolver extends AbstractQueryableInputObjectTypeResolv
     }
     final protected function getOrderFilterInput(): OrderFilterInput
     {
+        /** @var OrderFilterInput */
         return $this->includeFilterInput ??= $this->instanceManager->getInstance(OrderFilterInput::class);
     }
 
@@ -62,6 +67,9 @@ class SortInputObjectTypeResolver extends AbstractQueryableInputObjectTypeResolv
         return $this->__('Input to sort custom posts', 'customposts');
     }
 
+    /**
+     * @return array<string, InputTypeResolverInterface>
+     */
     public function getInputFieldNameTypeResolvers(): array
     {
         return [
